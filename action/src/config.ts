@@ -1,6 +1,6 @@
 export const config : Config = {
   api: {
-    url: new URL('https://github-actions-access-token.netlify.app'),
+    url: new URL('https://github-token-service.mccorkle.co'),
     // auth: {
     //   aws: {
     //     roleArn: 'arn:aws:iam::123456789012:role/github-actions-access-token-api-access',
