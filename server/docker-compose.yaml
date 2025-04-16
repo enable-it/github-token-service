@@ -1,0 +1,29 @@
+networks:
+  t2_proxy:
+    external: true
+
+services:
+  github-token-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: github-token-service
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: grafana/loki-docker-driver:latest
+      options:
+        loki-url: http://localhost:3100/loki/api/v1/push
+    user: root
+    env_file:
+      - .env
+    networks:
+      - t2_proxy
+    labels:
+      traefik.enable: true
+      traefik.http.routers.gts-rtr.entrypoints: https
+      traefik.http.routers.gts-rtr.rule: Host(`gts.mccorkle.co`)
+      traefik.http.routers.gts-rtr.priority: 99
+      traefik.http.routers.gts-rtr.service: gts-svc
+      traefik.http.services.gts-svc.loadbalancer.server.port: 3000
