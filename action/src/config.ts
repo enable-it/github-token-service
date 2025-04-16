@@ -1,6 +1,6 @@
 export const config : Config = {
   api: {
-    url: new URL('https://github-token-service.mccorkle.co'),
+    url: new URL('https://gts.mccorkle.co'),
     // auth: {
     //   aws: {
     //     roleArn: 'arn:aws:iam::123456789012:role/github-actions-access-token-api-access',
