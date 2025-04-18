@@ -72,6 +72,8 @@ async function getAccessToken(tokenRequest: {
         throw error;
       });
 
+  core.info('ID token for access manager: ' + idTokenForAccessManager);
+
   let requestSigner;
   if (config.api.auth?.aws) {
     requestSigner = new SignatureV4({
